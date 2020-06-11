@@ -299,4 +299,53 @@ public class PostsDAO {
 		}
 		return cnt;
 	}
+	
+	// 좋아요 카운트조회 처리
+		public int selCnt(int pno, String id) {
+			int cnt = 0;
+			con = db.getCon();
+			String sql = bSQL.getSQL(bSQL.SEL_LIKE);
+			pstmt = db.getPSTMT(con, sql);
+			
+			try {
+				pstmt.setInt(1, pno);
+				pstmt.setString(2, id);
+				
+				rs = pstmt.executeQuery();
+				rs.next();
+				cnt = rs.getInt("cnt");
+			} catch(Exception e) {
+				e.printStackTrace();
+			} finally {
+				db.close(rs);
+				db.close(pstmt);
+				db.close(con);
+			}
+			return cnt;
+		}
+		
+		// 좋아요 체크상태 조회 처리
+		public int selCheck(int pno, String id) {
+			int cnt = 0;
+			con = db.getCon();
+			String sql = bSQL.getSQL(bSQL.SEL_ISCHECK);
+			pstmt = db.getPSTMT(con, sql);
+			
+			try {
+				pstmt.setInt(1, pno);
+				pstmt.setString(2, id);
+				
+				rs = pstmt.executeQuery();
+				rs.next();
+				cnt = rs.getInt("cnt");
+			} catch(Exception e) {
+				e.printStackTrace();
+			} finally {
+				db.close(rs);
+				db.close(pstmt);
+				db.close(con);
+			}
+			
+			return cnt;
+		}
 }

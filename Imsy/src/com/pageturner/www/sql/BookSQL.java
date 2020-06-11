@@ -27,6 +27,8 @@ public class BookSQL {
 	public final int ADD_LIKE = 4001; //좋아요 질의명령
 	public final int CANCEL_LIKE = 4002; //좋아요 취소 질의명령
 	public final int RE_LIKE = 4003; //좋아요 취소했던 글에 다시 좋아요 질의명령
+	public final int SEL_LIKE = 4004; //좋아요 카운트조회 질의명령
+	public final int SEL_ISCHECK = 4005; //좋아요 체크상태 질의명령
 	
 	public String getSQL(int code) {
 		StringBuffer buff = new StringBuffer();
@@ -243,6 +245,25 @@ public class BookSQL {
 			buff.append("where "); 
 			buff.append("    pno = ? "); 
 			buff.append("    and mno = (select mno from membertab where id = ?) ");
+			break;
+		case SEL_LIKE:
+			buff.append("select  "); 
+			buff.append("    count(*) cnt "); 
+			buff.append("from  "); 
+			buff.append("    liketab "); 
+			buff.append("where  "); 
+			buff.append("    pno = ?  "); 
+			buff.append("    and mno = (select mno from membertab where id = ?) ");
+			break;
+		case SEL_ISCHECK:
+			buff.append("select  "); 
+			buff.append("    count(*) cnt "); 
+			buff.append("from  "); 
+			buff.append("    liketab "); 
+			buff.append("where  "); 
+			buff.append("    pno = ?  "); 
+			buff.append("    and mno = (select mno from membertab where id = ?) ");
+			buff.append("    and ischeck = 'Y'  "); 
 			break;
 		}
 		

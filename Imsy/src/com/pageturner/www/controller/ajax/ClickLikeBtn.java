@@ -34,12 +34,31 @@ public class ClickLikeBtn implements PageController {
 		
 		//DB 작업 
 		PostsDAO dao = new PostsDAO();
-		int cnt = dao.addLike(pno, id);
-		
+		int sel_cnt = dao.selCnt(pno, id);
 		StringBuffer buff = new StringBuffer();
-		buff.append("{");
-		buff.append("\"cnt\": " + cnt + "");
-		buff.append("}");
+		if(sel_cnt == 0) {
+			int cnt = dao.addLike(pno, id);
+			
+			buff.append("{");
+			buff.append("\"cnt\": " + cnt + "");
+			buff.append("}");
+			
+		} else {
+			sel_cnt = dao.selCheck(pno, id);
+			if(sel_cnt == 1) {
+				// 좋아요 체크상태일 때
+				int cnt = dao.cancelLike(pno, id);
+				buff.append("{");
+				buff.append("\"cnt\": " + cnt + "");
+				buff.append("}");
+			} else {
+				// 좋아요 체크상태 아닐 때
+				int cnt = dao.reLike(pno, id);
+				buff.append("{");
+				buff.append("\"cnt\": " + cnt + "");
+				buff.append("}");
+			}
+		}
 		
 		System.out.println(buff.toString());
 		
