@@ -100,7 +100,7 @@ public class BookSQL {
 			buff.append("SELECT ");
 			buff.append("	count(*) cnt ");
 			buff.append("FROM ");
-			buff.append("	member ");
+			buff.append("	membertab ");
 			buff.append("WHERE ");
 			buff.append("	id = ? ");
 			break;
