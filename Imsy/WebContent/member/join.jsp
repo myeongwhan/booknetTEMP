@@ -1000,7 +1000,7 @@
 				<div class="join_row">
                 	<h3 class="join_title"><label for="describe">간단소개<span class="terms_choice">(선택)</span></label></h3>
                 	<span class="ps_box box_right_space" style="height: 120px;">
-						<textarea id="describe" name="describe" title="간단소개" cols="68" rows="7" maxlength="100" style="resize: none; font-size: 12px;"></textarea>
+						<textarea id="describe" name="describe" title="간단소개" cols="59" rows="5" maxlength="100" style="resize: none; font-size: 12px;"></textarea>
 					</span>
                 <span class="error_next_box" id="nameMsg" style="display:none" aria-live="assertive"></span>
                 </div>
