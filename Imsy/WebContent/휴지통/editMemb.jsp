@@ -25,7 +25,7 @@
 	$(function(){
 		// 비번일치
 		$('#pwck').keyup(function(){
-			var pw = $('#pw').val();
+			var pw = $('#newpw').val();
 			var pwck = $('#pwck').val();
 			if(pw == pwck){
 				$('#pwckshow').html('일치');
@@ -43,20 +43,8 @@
 			$('#img').attr('src', img);
 		});
 		
-		var mgen = '남자';
-		var fgen = '여자';
-		var tt = '${DATA.gen}';
-		if(tt == mgen){
-			$('#M').prop('checked', 'checked');
-		} else if(tt == fgen) {
-			$('#F').prop('checked', 'checked');
-		}
-		
-		$('input[value=${DATA.ano}]').prop('checked', 'checked');
-		
-		// 가입/취소얼럿
+		// 수정/홈 얼럿
 		$('#ebtn').click(function(){
-//			alert('가입완료 서밋 안만듦');
 			// 데이터 무결성 검사해야됨
 			
 			$('#frm').submit();
@@ -71,99 +59,91 @@
 <body>
 	<div class="w3-col l3 m3"><p></p></div>
 	<div class="w3-col l6 m6 s12">
-		<form class="w3-col" method="post" action="/cls/member/editProc.cls" name="frm" id="frm" encType="multipart/form-data">
-			<div class="w3-col w3-padding w3-blue w3-card">
-				<h3 class="w3-center">edit</h3>
+		<form class="w3-col" method="post" action="" name="frm" id="frm" encType="multipart/form-data">
+			<div class="w3-col w3-padding w3-black w3-card">
+				<h3 class="w3-center">정보수정</h3>
 			</div>
+				<!-- 비번수정 -->
 			<div class="w3-col w3-padding w3-border w3-card" style="margin-top: 10px;">
-				<!-- 아이디 -->
 				<div class="w3-row">
-					<label class="w3-col m3 w3-right-align w3-padding" for="id">I D :</label>
-					<div class="w3-col m9 w3-padding">
-						<div class="w3-col m9">
-							<input type="text" id="id" name="id" value="${DATA.id }" readonly="readonly">
-						</div>
+					<label class="w3-col m3 w3-right-align w3-padding w3-border" for="pw">현재 비밀번호</label>
+					<div class="w3-col m9 w3-padding w3-border">
+						<input  class="w3-col m12 " type="text" id="pw" name="pw" >
 					</div>
 				</div>
-				<!-- 비번 -->
 				<div class="w3-row">
-					<label class="w3-col m3 w3-right-align w3-padding" for="pw">P W :</label>
-					<div class="w3-col m9 w3-padding">
-						<input class="w3-col m12" type="password" id="pw" name="pw">
+					<label class="w3-col m3 w3-right-align w3-padding w3-border" for="newpw">새 비밀번호</label>
+					<div class="w3-col m9 w3-padding w3-border">
+						<input class="w3-col m12 " type="password" id="newpw" name="newpw">
 					</div>
 				</div>
-				<!-- 비번확인 -->
 				<div class="w3-row">
-					<label class="w3-col m3 w3-right-align w3-padding" for="pwck">P W ck :</label>
-					<div class="w3-col m9 w3-padding">
+					<label class="w3-col m3 w3-right-align w3-padding w3-border" for="pwck">비밀번호 확인</label>
+					<div class="w3-col m9 w3-padding w3-border">
 						<input class="w3-col m12" type="password" id="pwck" name="pwck">
 						<div class="w3-col m12" id="pwckshow"></div>
 					</div>
 				</div>
-				<!-- 프사 -->
+			</div>
+			</form>
+		<form class="w3-col" method="post" action="" name="frm" id="frm" encType="multipart/form-data">
+			<div class="w3-col m12 w3-padding w3-card w3-center w3-blue w3-button" id="ebtn">비밀번호 변경</div>
+				<!-- 프로필사진 -->
+			<div class="w3-col w3-padding w3-border w3-card" style="margin-top: 10px;">
 				<div class="w3-row">
-					<label class="w3-col m3 w3-right-align w3-padding" for="file">프사 :</label>
-					<div class="w3-col m9 w3-padding">
+					<label class="w3-col m3 w3-right-align w3-padding w3-border" for="file">프로필 사진</label>
+					<div class="w3-col m9 w3-padding w3-border">
 						<input class="w3-col m12" type="file" id="file" name="file"/>
 					</div>
-					<div class="w3-row w3-center" >
-						<img id="img" style="width: 100px; height: auto;" src="/cls/profile/${PIC.savename}" />
+					<div class="w3-row w3-center w3-border" >
+						<img id="img" style="width: 100px; height: auto;" src="" />
 					</div>
 				</div>
-				<!-- 이름 -->
+				<!-- 닉네임 -->
 				<div class="w3-row">
-					<label class="w3-col m3 w3-right-align w3-padding" for="name">이 름 :</label>
-					<div class="w3-col m9 w3-padding">
-						<div class="w3-col m12" type="text" id="name" name="name">${DATA.name }</div>
+					<label class="w3-col m3 w3-right-align w3-padding w3-border" for="nickname">닉네임</label>
+					<div class="w3-col m9 w3-padding w3-border">
+						<input class="w3-col m12" type="text" id="nickame" name="nickname">
 					</div>
 				</div>
-				<!-- 이메일 -->
+				<!-- 관심분야 -->
 				<div class="w3-row">
-					<label class="w3-col m3 w3-right-align w3-padding" for="mail">이메일 :</label>
-					<div class="w3-col m9 w3-padding">
-						<div class="w3-col m12" type="text" id="mail" name="mail">${DATA.mail }</div>
+					<label class="w3-col m3 w3-right-align w3-padding w3-border" for="interest">관심분야</label>
+					<div class="w3-col m9 w3-padding w3-border">
+						<input class="w3-col m12" type="checkbox" id="interest1" name="interest1">
+						<input class="w3-col m12" type="checkbox" id="interest2" name="interest2">
+						<input class="w3-col m12" type="checkbox" id="interest3" name="interest3">
+						<input class="w3-col m12" type="checkbox" id="interest4" name="interest4">
+						<input class="w3-col m12" type="checkbox" id="interest5" name="interest5">
 					</div>
 				</div>
-				<!-- 폰번 -->
+				<!-- 간단소개 -->
 				<div class="w3-row">
-					<label class="w3-col m3 w3-right-align w3-padding" for="tel">휴대폰 :</label>
-					<div class="w3-col m9 w3-padding">
-						<div class="w3-col m12" type="text" id="tel" name="tel">${DATA.tel }</div>
+					<label class="w3-col m3 w3-right-align w3-padding w3-border" for="describe">간단소개</label>
+					<div class="w3-col m9 w3-padding w3-border">
+						<input class="w3-col m12" type="text" id="describe" name="describe">
 					</div>
 				</div>
-				<!-- 성별 -->
+				<!-- 정보공개설정 -->
 				<div class="w3-row">
-					<label class="w3-col m3 w3-right-align w3-padding" for="gen">성 별 :</label>
-					<div class="w3-col m9 w3-padding">
-					<c:if test="${DATA.gen eq '남자' }">
-						<span class="w3-col m6">
-							<span type="radio" id="M" name="gen">남자</span>
+					<label class="w3-col m3 w3-right-align w3-padding w3-border" for="gen">정보공개설정</label>
+					<div class="w3-col m9 w3-padding w3-border">
+						<span class="w3-col m10">관심분야
+							<input type="radio" id="Y" name="gen">공개
+							<input type="radio" id="N" name="gen">비공개
 						</span>
-					</c:if>
-					<c:if test="${DATA.gen eq '여자' }">
-						<span class="w3-col m6">
-							<span type="radio" id="F" name="gen">여자</span>
-					</c:if>
+						</br>
+						<span class="w3-col m10">생년월일
+							<input type="radio" id="Y" name="gen">공개
+							<input type="radio" id="N" name="gen">비공개
+						</span>
+						</br>
+						<span class="w3-col m10">성별
+							<input type="radio" id="Y" name="gen">공개
+							<input type="radio" id="N" name="gen">비공개
+						</span>
+						</br>
 					</div>
-				</div>
-				<!-- 성별 안 아바타선택 -->
-				<div class="w3-row " id="genbox">
-					<c:if test="${DATA.gen eq '남자' }">
-					<label class=" rel2 w3-col m3 w3-right-align w3-padding" style="padding-left:0px!important">아바타 선택 : </label>
-						<div class="w3-col m9 rel">
-							<input type="radio" id="avt1" name="ano" class="w3-radio" value="11"><label for="avt1"><img class=" w3-button imgsize" src="../img/img_avatar1.png"></label>
-							<input type="radio" id="avt2" name="ano" class="w3-radio" value="12"><label for="avt2"><img class=" w3-button imgsize" src="../img/img_avatar2.png"></label>
-							<input type="radio" id="avt3" name="ano" class="w3-radio" value="13"><label for="avt3"><img class=" w3-button imgsize" src="../img/img_avatar3.png"></label>
-						</div>
-					</c:if>
-					<c:if test="${DATA.gen eq '여자' }">
-					<label class=" rel2 w3-col m3 w3-right-align w3-padding" style="padding-left:0px!important">아바타 선택 : </label>
-						<div class="w3-col m9 rel">
-							<input type="radio" id="avt4" name="ano" class="w3-radio" value="14"><label for="avt4"><img class=" w3-button imgsize" src="../img/img_avatar4.png"></label>
-							<input type="radio" id="avt5" name="ano" class="w3-radio" value="15"><label for="avt5"><img class=" w3-button imgsize" src="../img/img_avatar5.png"></label>
-							<input type="radio" id="avt6" name="ano" class="w3-radio" value="16"><label for="avt6"><img class=" w3-button imgsize" src="../img/img_avatar6.png"></label>
-						</div>
-					</c:if>
 				</div>
 				<div class="w3-row">
 					<label class="w3-col m3 w3-right-align w3-padding w3-hide" for="avt">아바타 :</label>
@@ -175,18 +155,20 @@
 						</div>
 					</div> -->
 				</div>
-				<!-- 년월일 -->
+			</div>
+		</form>
+			<div class="w3-col m12 w3-padding w3-card w3-center w3-blue w3-button" id="ebtn">정보수정</div>
+				<!-- 회원탈퇴 -->
+			<div class="w3-col w3-padding w3-border w3-card" style="margin-top: 10px;">
 				<div class="w3-row">
-					<label class="w3-col m3 w3-right-align w3-padding" for="birth">생년월일 :</label>
-					<div class="w3-col m9 w3-padding">
-						<div class="w3-col m12">${DATA.birth }</div>
+					<label class="w3-col m3 w3-right-align w3-padding w3-border" for="name">회원탈퇴</label>
+					<div class="w3-col m9 w3-padding w3-border">
+						<button style="display: inline-block; border: 2px solid gray;" id="delete">회원탈퇴하시겠습니까?</button>
 					</div>
 				</div>
 			</div>
-		</form>
-		<!-- 확인취소버튼 -->
-		<div class="w3-col m6 w3-padding w3-card w3-center w3-blue w3-button" id="ebtn">수정</div>
-		<div class="w3-col m6 w3-padding w3-card w3-center w3-red w3-button" id="hbtn">홈으로</div>
+		<!-- 홈버튼 -->
+		<div class="w3-col m12 w3-padding w3-card w3-center w3-red w3-button" id="hbtn">홈으로</div>
 	</div>
 </body>
 </html>
